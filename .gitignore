@@ -1,0 +1,14 @@
+# Inventory output - can contain serials, MACs, and asset identifiers
+specs.json
+specs.txt
+*-specs.json
+*-specs.txt
+inventory/
+
+# Claude Code local overrides
+.claude/settings.local.json
+
+# OS noise
+Thumbs.db
+.DS_Store
+desktop.ini
