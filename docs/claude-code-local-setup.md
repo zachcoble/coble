@@ -29,6 +29,13 @@ locally.**
 irm https://claude.ai/install.ps1 | iex
 ```
 
+Or via WinGet (does not auto-update; you run `winget upgrade
+Anthropic.ClaudeCode` yourself):
+
+```powershell
+winget install Anthropic.ClaudeCode
+```
+
 Then:
 
 ```powershell
@@ -36,7 +43,36 @@ claude
 ```
 
 First launch opens a browser to log in. Works with a Pro or Max subscription -
-same account as the web app, no separate API key needed.
+same account as the web app, no separate API key needed. No Administrator
+rights needed to install.
+
+Verify:
+
+```powershell
+claude --version
+claude doctor    # read-only diagnostics: install health, settings errors
+```
+
+#### Install Git for Windows too
+
+[Git for Windows](https://git-scm.com/downloads/win) is optional but worth
+having. It decides which shell the agent gets:
+
+- **Without it:** Claude Code runs commands through the **PowerShell tool**.
+- **With it:** Claude Code uses Git Bash for the **Bash tool**, and the
+  PowerShell tool stays available alongside it.
+
+For this repo's work you want both - PowerShell to reach WMI and the hardware,
+Bash for everything else. If Claude Code can't find Git Bash, point it at the
+path in `~/.claude/settings.json`:
+
+```json
+{
+  "env": {
+    "CLAUDE_CODE_GIT_BASH_PATH": "C:\\Program Files\\Git\\bin\\bash.exe"
+  }
+}
+```
 
 ### WSL2 - only if you're doing Linux development
 
@@ -48,6 +84,11 @@ curl -fsSL https://claude.ai/install.sh | bash
 > *virtualized* hardware, so `dmidecode` and friends report the VM, not your
 > laptop. Same trap as the cloud container. If the job is "inventory this PC,"
 > install on native Windows and let it drive PowerShell.
+
+One real advantage WSL2 has: it supports Claude Code's **sandboxing**, and
+native Windows does not. So the tradeoff is reach versus containment - native
+Windows can touch your actual hardware, WSL2 can be locked down harder. For
+hardware work, take native.
 
 ### macOS / Linux
 
