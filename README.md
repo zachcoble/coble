@@ -1,4 +1,4 @@
-# it-toolkit
+# IT Support Toolkit
 
 Scripts and configuration for IT support work, plus the setup to run Claude
 Code as a local agent that can actually touch the machine in front of you.
@@ -14,8 +14,8 @@ Built for two jobs:
 ## Quickstart
 
 ```powershell
-git clone https://github.com/zachcoble/it-toolkit.git
-cd it-toolkit
+git clone https://github.com/zachcoble/coble.git
+cd coble
 
 # Hardware inventory (run elevated for complete results)
 .\scripts\Get-PCSpecs.ps1
